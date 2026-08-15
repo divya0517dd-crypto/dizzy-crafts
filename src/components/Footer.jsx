@@ -1,7 +1,5 @@
 import { Link } from "react-router";
 import {
-  Instagram,
-  Facebook,
   Mail,
   Phone,
   MapPin,
@@ -20,8 +18,10 @@ function Footer() {
           {/* Brand */}
           <div>
 
-            <Link to="/" className="inline-flex items-center gap-3">
-
+            <Link
+              to="/"
+              className="inline-flex items-center gap-3"
+            >
               <div className="flex h-11 w-11 items-center justify-center rounded-full bg-amber-700 text-xl text-white">
                 ✦
               </div>
@@ -35,7 +35,6 @@ function Footer() {
                   CRAFTS
                 </p>
               </div>
-
             </Link>
 
             <p className="mt-5 max-w-xs text-sm leading-7 text-stone-400">
@@ -44,23 +43,27 @@ function Footer() {
               every occasion.
             </p>
 
-            {/* Social */}
+            {/* Social Buttons */}
             <div className="mt-6 flex gap-3">
 
               <a
-                href="#"
+                href="https://www.instagram.com/"
+                target="_blank"
+                rel="noreferrer"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-stone-700 text-sm font-bold text-stone-300 transition hover:border-amber-600 hover:text-amber-500"
                 aria-label="Instagram"
-                className="rounded-full border border-stone-700 p-2.5 transition hover:border-amber-600 hover:text-amber-500"
               >
-                <Instagram size={18} />
+                IG
               </a>
 
               <a
-                href="#"
+                href="https://www.facebook.com/"
+                target="_blank"
+                rel="noreferrer"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-stone-700 text-sm font-bold text-stone-300 transition hover:border-amber-600 hover:text-amber-500"
                 aria-label="Facebook"
-                className="rounded-full border border-stone-700 p-2.5 transition hover:border-amber-600 hover:text-amber-500"
               >
-                <Facebook size={18} />
+                FB
               </a>
 
             </div>
