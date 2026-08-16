@@ -198,18 +198,24 @@ function Navbar() {
               </Link>
 
               <Link
-                to="/wishlist"
-                onClick={() => setMobileOpen(false)}
-                className="flex items-center justify-between rounded-xl px-4 py-3 font-semibold text-stone-700 hover:bg-stone-100"
-              >
-                <span>Wishlist</span>
+  to="/wishlist"
+  className="flex w-full items-center justify-between rounded-xl px-4 py-3 font-semibold text-stone-700 hover:bg-stone-100"
+  onClick={() => {
+    setMobileOpen(false);
+  }}
+>
+  <span>Wishlist</span>
 
-                {wishlist.length > 0 && (
-                  <span className="rounded-full bg-red-500 px-2 py-1 text-xs text-white">
-                    {wishlist.length}
-                  </span>
-                )}
-              </Link>
+  <div className="flex items-center gap-2">
+    {wishlist.length > 0 && (
+      <span className="rounded-full bg-red-500 px-2 py-1 text-xs font-bold text-white">
+        {wishlist.length}
+      </span>
+    )}
+
+    <Heart size={18} />
+  </div>
+</Link>
 
               <Link
                 to="/cart"

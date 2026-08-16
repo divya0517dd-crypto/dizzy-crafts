@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router";
 import Wishlist from "./pages/Wishlist";
 
+
 import Navbar from "./components/Navbar";
 import ProductGrid from "./components/ProductGrid";
 import Footer from "./components/Footer";
@@ -84,6 +85,8 @@ function App() {
       <Navbar />
 
       <Routes>
+        
+
         <Route
   path="/wishlist"
   element={<Wishlist />}
