@@ -1,150 +1,116 @@
-import { useMemo, useState } from "react";
-import { Search, SlidersHorizontal } from "lucide-react";
+import { useMemo } from "react";
+import { useSearchParams } from "react-router";
 import ProductCard from "./ProductCard";
 
-function ProductGrid({ products }) {
-  const [search, setSearch] = useState("");
-  const [category, setCategory] = useState("All");
+function ProductGrid({ products = [] }) {
+  const [searchParams] = useSearchParams();
 
-  const categories = [
-    "All",
-    ...new Set(products.map((product) => product.category)),
-  ];
+  const searchQuery = (
+    searchParams.get("search") || ""
+  ).toLowerCase().trim();
 
   const filteredProducts = useMemo(() => {
+    if (!searchQuery) {
+      return products;
+    }
+
     return products.filter((product) => {
-      const matchesSearch =
-        product.name.toLowerCase().includes(search.toLowerCase()) ||
-        product.category.toLowerCase().includes(search.toLowerCase());
+      const name = String(product.name || "").toLowerCase();
+      const category = String(product.category || "").toLowerCase();
+      const description = String(
+        product.description || ""
+      ).toLowerCase();
 
-      const matchesCategory =
-        category === "All" ||
-        product.category === category;
-
-      return matchesSearch && matchesCategory;
+      return (
+        name.includes(searchQuery) ||
+        category.includes(searchQuery) ||
+        description.includes(searchQuery)
+      );
     });
-  }, [products, search, category]);
+  }, [products, searchQuery]);
 
   return (
-    <div>
+    <section className="w-full">
 
-      {/* Search + Filter */}
-      <div className="mb-8 rounded-2xl border border-stone-200 bg-white p-4 shadow-sm">
+      {/* HEADER */}
+      <div className="mb-4 flex items-center justify-between gap-3 sm:mb-6">
 
-        <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+        <div className="min-w-0">
+          <h2 className="text-xl font-bold text-stone-800 sm:text-2xl lg:text-3xl">
+            {searchQuery
+              ? `Search results for "${searchQuery}"`
+              : "Explore Our Crafts"}
+          </h2>
 
-          {/* Search */}
-          <div className="flex w-full items-center rounded-full border border-stone-200 bg-stone-50 px-4 py-3 lg:max-w-md">
+          <p className="mt-1 text-xs text-stone-500 sm:text-sm">
+            {filteredProducts.length}{" "}
+            {filteredProducts.length === 1
+              ? "product"
+              : "products"}{" "}
+            available
+          </p>
+        </div>
 
-            <Search
-              size={20}
-              className="shrink-0 text-stone-400"
-            />
-
-            <input
-              type="text"
-              value={search}
-              onChange={(event) => setSearch(event.target.value)}
-              placeholder="Search handmade crafts..."
-              className="ml-3 w-full bg-transparent text-sm outline-none placeholder:text-stone-400"
-            />
-
-          </div>
-
-          {/* Filter */}
-          <div className="flex items-center gap-2 overflow-x-auto pb-1">
-
-            <SlidersHorizontal
-              size={18}
-              className="shrink-0 text-stone-500"
-            />
-
-            {categories.map((item) => (
-              <button
-                key={item}
-                type="button"
-                onClick={() => setCategory(item)}
-                className={`whitespace-nowrap rounded-full px-4 py-2 text-sm font-semibold transition ${
-                  category === item
-                    ? "bg-amber-700 text-white"
-                    : "bg-stone-100 text-stone-600 hover:bg-amber-100 hover:text-amber-800"
-                }`}
-              >
-                {item}
-              </button>
-            ))}
-
-          </div>
-
+        {/* Product count */}
+        <div className="shrink-0 rounded-full bg-stone-100 px-3 py-1.5 text-xs font-semibold text-stone-600 sm:px-4 sm:py-2">
+          {filteredProducts.length} items
         </div>
 
       </div>
 
-      {/* Result Count */}
-      <div className="mb-6 flex items-center justify-between">
-
-        <p className="text-sm text-stone-500">
-          Showing{" "}
-          <span className="font-bold text-stone-800">
-            {filteredProducts.length}
-          </span>{" "}
-          products
-        </p>
-
-        {search && (
-          <button
-            type="button"
-            onClick={() => setSearch("")}
-            className="text-sm font-semibold text-amber-700 hover:text-amber-800"
-          >
-            Clear Search
-          </button>
-        )}
-
-      </div>
-
-      {/* Products */}
+      {/* PRODUCTS */}
       {filteredProducts.length > 0 ? (
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
 
+        <div
+          className="
+            grid
+            grid-cols-2
+            gap-2.5
+            min-[480px]:gap-3
+            sm:grid-cols-2
+            sm:gap-4
+            md:grid-cols-3
+            lg:grid-cols-4
+            xl:gap-5
+          "
+        >
           {filteredProducts.map((product) => (
             <ProductCard
               key={product.id}
               product={product}
             />
           ))}
-
         </div>
-      ) : (
-        <div className="rounded-3xl border border-dashed border-stone-300 bg-white px-5 py-16 text-center">
 
-          <div className="text-5xl">
+      ) : (
+
+        /* EMPTY SEARCH */
+        <div className="flex min-h-[300px] flex-col items-center justify-center rounded-2xl border border-dashed border-stone-300 bg-stone-50 px-5 text-center">
+
+          <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-white text-3xl shadow-sm">
             🔍
           </div>
 
-          <h3 className="mt-5 text-2xl font-bold text-stone-800">
-            No Crafts Found
+          <h3 className="text-lg font-bold text-stone-800">
+            No crafts found
           </h3>
 
-          <p className="mt-2 text-stone-500">
-            Try another product name or category.
+          <p className="mt-2 max-w-md text-sm text-stone-500">
+            We couldn't find any products matching
+            {searchQuery && (
+              <span className="font-semibold text-stone-700">
+                {" "}
+                "{searchQuery}"
+              </span>
+            )}
+            .
           </p>
 
-          <button
-            type="button"
-            onClick={() => {
-              setSearch("");
-              setCategory("All");
-            }}
-            className="mt-6 rounded-full bg-stone-800 px-6 py-3 font-semibold text-white transition hover:bg-amber-700"
-          >
-            Show All Products
-          </button>
-
         </div>
+
       )}
 
-    </div>
+    </section>
   );
 }
 
