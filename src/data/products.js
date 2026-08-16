@@ -1,29 +1,29 @@
 const products = [
   {
     id: 1,
-    name: "Terracotta Floral Wall Hanging",
-    category: "Home Decor",
+    name: "Handmade clay Bowl",
+    category: "Pottery",
     price: 499,
     rating: 4.8,
     image:
       "https://images.unsplash.com/photo-1610701596007-11502861dcfa?auto=format&fit=crop&w=800&q=80",
     description:
-      "Handcrafted terracotta wall decor featuring an elegant floral design, perfect for adding a warm traditional touch to your home.",
-    material: "Terracotta",
+      "Handcrafted clay bowl with a unique glaze finish.",
+    material: "Clay",
     size: "12 x 12 inches",
     stock: 12,
   },
 
   {
     id: 2,
-    name: "Handwoven Jute Basket",
+    name: "Handwoven Jute Bag",
     category: "Home Decor",
     price: 699,
     rating: 4.7,
     image:
       "https://images.unsplash.com/photo-1594223274512-ad4803739b7c?auto=format&fit=crop&w=800&q=80",
     description:
-      "Eco-friendly handwoven jute basket suitable for storing accessories, towels, toys and everyday essentials.",
+      "Eco-friendly handwoven jute bag suitable for storing accessories, towels, toys and everyday essentials.",
     material: "Natural Jute",
     size: "10 x 8 inches",
     stock: 18,
@@ -46,31 +46,31 @@ const products = [
 
   {
     id: 4,
-    name: "Macrame Leaf Wall Decor",
-    category: "Wall Art",
+    name: "Bowl",
+    category: "Pottery",
     price: 599,
     rating: 4.6,
     image:
       "https://images.unsplash.com/photo-1524638067-feba7d5c7301?auto=format&fit=crop&w=800&q=80",
     description:
-      "Soft cotton macrame wall hanging designed with leaf patterns for modern and boho interiors.",
-    material: "Cotton Cord",
-    size: "18 x 10 inches",
+      "Handmade ceramic bowl with a unique glaze finish.",
+    material: "Ceramic",
+    size: "8 inches diameter",
     stock: 15,
   },
 
   {
     id: 5,
-    name: "Handmade Clay Vase",
-    category: "Pottery",
+    name: "Elegant chair",
+    category: "Home Decor",
     price: 799,
     rating: 4.8,
     image:
       "https://images.unsplash.com/photo-1612196808214-b8e1d6145a8c?auto=format&fit=crop&w=800&q=80",
     description:
-      "Minimal handmade clay vase with a natural finish, suitable for flowers and tabletop decoration.",
-    material: "Natural Clay",
-    size: "8 inches height",
+      "Elegant handmade chair with a natural finish, suitable for living rooms and dining areas.",
+    material: "Natural Wood",
+    size: "30 x 20 x 25 inches",
     stock: 10,
   },
 
@@ -91,14 +91,14 @@ const products = [
 
   {
     id: 7,
-    name: "Traditional Dhokra Elephant",
-    category: "Traditional Art",
+    name: "Wall Stickers",
+    category: "Wall Art",
     price: 1199,
     rating: 4.9,
     image:
       "https://images.unsplash.com/photo-1549490349-8643362247b5?auto=format&fit=crop&w=800&q=80",
     description:
-      "Traditional Indian-inspired elephant sculpture designed as an elegant statement piece for your home.",
+      "Traditional Indian-inspired wall stickers designed as an elegant statement piece for your home.",
     material: "Metal",
     size: "7 x 5 inches",
     stock: 6,
@@ -106,22 +106,22 @@ const products = [
 
   {
     id: 8,
-    name: "Handpainted Wooden Tray",
-    category: "Wood Craft",
+    name: "Bowl",
+    category: "Pottery",
     price: 849,
     rating: 4.7,
     image:
       "https://images.unsplash.com/photo-1602874801006-e26e5e3d4f7c?auto=format&fit=crop&w=800&q=80",
     description:
-      "Decorative wooden serving tray featuring a colorful handcrafted painted pattern.",
-    material: "Mango Wood",
-    size: "16 x 10 inches",
+      "Decorative ceramic serving bowl with a unique glaze finish.",
+    material: "Ceramic",
+    size: "10 inches diameter",
     stock: 11,
   },
 
   {
     id: 9,
-    name: "Beaded Boho Dreamcatcher",
+    name: "Wall Decor Dreamcatcher",
     category: "Wall Art",
     price: 649,
     rating: 4.6,
@@ -129,7 +129,7 @@ const products = [
       "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=800&q=80",
     description:
       "Bohemian-inspired dreamcatcher decorated with natural feathers and wooden beads.",
-    material: "Cotton and Wood",
+    material: " Wood",
     size: "14 inches",
     stock: 13,
   },
@@ -151,14 +151,14 @@ const products = [
 
   {
     id: 11,
-    name: "Wooden Mandala Coaster Set",
+    name: "Kitchen mini Set",
     category: "Wood Craft",
     price: 399,
     rating: 4.7,
     image:
       "https://images.unsplash.com/photo-1610701596061-2ecf227e85b2?auto=format&fit=crop&w=800&q=80",
     description:
-      "Set of handcrafted wooden coasters decorated with detailed mandala-inspired patterns.",
+      "Set of handcrafted wooden and clay bowls and vegetable cutting plates decorated with detailed patterns.",
     material: "Wood",
     size: "4 inches each",
     stock: 25,
@@ -181,31 +181,31 @@ const products = [
 
   {
     id: 13,
-    name: "Palm Leaf Storage Basket",
+    name: "Wooden Storage Basket",
     category: "Eco Crafts",
     price: 599,
     rating: 4.6,
     image:
       "https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&fit=crop&w=800&q=80",
     description:
-      "Eco-friendly storage basket woven from natural palm leaves with a rustic handmade appearance.",
-    material: "Palm Leaf",
+      "Eco-friendly storage basket woven from natural wood with a rustic handmade appearance.",
+    material: "Wood",
     size: "12 x 10 inches",
     stock: 17,
   },
 
   {
     id: 14,
-    name: "Mini Wooden Elephant",
-    category: "Wood Craft",
+    name: "Bowl",
+    category: "Pottery",
     price: 349,
     rating: 4.8,
     image:
       "https://images.unsplash.com/photo-1544966503-7cc5ac882d5f?auto=format&fit=crop&w=800&q=80",
     description:
-      "Small handcrafted wooden elephant sculpture ideal for shelves, desks and gift collections.",
-    material: "Sheesham Wood",
-    size: "5 inches",
+      "Small handcrafted ceramic bowl with a unique glaze finish.",
+    material: "Ceramic",
+    size: "8 inches diameter",
     stock: 22,
   },
 
@@ -226,7 +226,7 @@ const products = [
 
   {
     id: 16,
-    name: "Embroidered Cushion Cover",
+    name: "Cushion Cover",
     category: "Textile Crafts",
     price: 549,
     rating: 4.6,
@@ -242,7 +242,7 @@ const products = [
   {
     id: 17,
     name: "Rattan Hanging Planter",
-    category: "Eco Crafts",
+    category: "Gardening",
     price: 749,
     rating: 4.8,
     image:
@@ -256,7 +256,7 @@ const products = [
 
   {
     id: 18,
-    name: "Handpainted Terracotta Pot",
+    name: "Rattan Hanging Planter",
     category: "Gardening",
     price: 399,
     rating: 4.7,
@@ -265,50 +265,50 @@ const products = [
     description:
       "Handpainted terracotta planter featuring colorful artisan patterns for indoor or balcony plants.",
     material: "Terracotta",
-    size: "7 inches",
+    size: "4 inches",
     stock: 24,
   },
 
   {
     id: 19,
-    name: "Brass Peacock Figurine",
-    category: "Traditional Art",
+    name: "Nature Art",
+    category: "Textile Crafts",
     price: 1299,
     rating: 4.9,
     image:
       "https://images.unsplash.com/photo-1582550945154-66ea8fff25e1?auto=format&fit=crop&w=800&q=80",
     description:
-      "Elegant peacock figurine inspired by Indian decorative art, crafted as a premium home accent.",
-    material: "Brass",
+      "Elegant Natural art piece inspired by Indian decorative art, crafted as a premium home accent.",
+    material: "Wood",
     size: "8 x 5 inches",
     stock: 7,
   },
 
   {
     id: 20,
-    name: "Handmade Soy Wax Candle",
-    category: "Candles",
+    name: "Handmade Bowl",
+    category: "Pottery",
     price: 499,
     rating: 4.8,
     image:
       "https://images.unsplash.com/photo-1602874801006-e26e5e3d4f7c?auto=format&fit=crop&w=800&q=80",
     description:
-      "Hand-poured decorative soy wax candle with a soft fragrance and elegant handmade presentation.",
-    material: "Soy Wax",
-    size: "200 g",
+      "Handmade ceramic bowl with a unique glaze finish.",
+    material: "Ceramic",
+    size: "8 inches diameter",
     stock: 21,
   },
 
   {
     id: 21,
-    name: "Leather Handmade Journal",
+    name: "Leather Handmade Bag",
     category: "Stationery",
     price: 649,
     rating: 4.7,
     image:
       "https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=800&q=80",
     description:
-      "Artisan journal with a handcrafted cover, perfect for writing, sketches and personal notes.",
+      "Artisan handmade bag with a unique design and high-quality craftsmanship.",
     material: "Leather and Paper",
     size: "A5",
     stock: 15,
@@ -331,15 +331,15 @@ const products = [
 
   {
     id: 23,
-    name: "Beaded Handmade Bracelet",
+    name: "Rose gold necklace",
     category: "Jewellery",
     price: 349,
     rating: 4.6,
     image:
       "https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=800&q=80",
     description:
-      "Handcrafted beaded bracelet designed with a simple bohemian style for everyday wear.",
-    material: "Natural Beads",
+      "Handcrafted rose gold necklace with a elegant design for everyday wear.",
+    material: "Rose Gold",
     size: "Adjustable",
     stock: 28,
   },
@@ -391,8 +391,8 @@ const products = [
 
   {
     id: 27,
-    name: "Natural Fiber Table Mat Set",
-    category: "Eco Crafts",
+    name: "House mirror for window",
+    category: "Home Decor",
     price: 499,
     rating: 4.6,
     image:
@@ -406,8 +406,8 @@ const products = [
 
   {
     id: 28,
-    name: "Handcrafted Mini Clay House",
-    category: "Miniature Art",
+    name: "Natural Fiber Cushion Set",
+    category: "Eco Crafts",
     price: 549,
     rating: 4.7,
     image:
@@ -421,29 +421,30 @@ const products = [
 
   {
     id: 29,
-    name: "Traditional Kolam Wall Art",
-    category: "Traditional Art",
+    name: "Handmade Bowl",
+    category: "Pottery",
     price: 799,
     rating: 4.9,
     image:
       "https://images.unsplash.com/photo-1577083552431-6e5fd01988a5?auto=format&fit=crop&w=800&q=80",
     description:
-      "Decorative wall artwork inspired by traditional South Indian kolam patterns.",
-    material: "Wood and Acrylic",
-    size: "14 x 14 inches",
+      "Handmade ceramic bowl with a unique glaze finish.",
+    material: "Ceramic",
+    size: "8 inches diameter",
     stock: 8,
   },
 
   {
     id: 30,
-    name: "Handmade Gift Hamper",
-    category: "Gift Crafts",
+    name: "Handmade Bowl",
+    category: "Pottery",
+
     price: 1499,
     rating: 4.9,
     image:
       "https://images.unsplash.com/photo-1549465220-1a8f6e8a2a7e?auto=format&fit=crop&w=800&q=80",
     description:
-      "Curated handmade gift hamper featuring a selection of artisan-inspired craft items.",
+      "Curated handmade bowl featuring a unique design and high-quality craftsmanship.",
     material: "Mixed Materials",
     size: "Medium",
     stock: 5,
