@@ -1,96 +1,120 @@
 import { Link } from "react-router";
 import { Heart, ShoppingCart, Star } from "lucide-react";
 
-import { useWishlist } from "../context/WishlistContext";
 import { useCart } from "../context/CartContext";
+import { useWishlist } from "../context/WishlistContext";
 
 function ProductCard({ product }) {
-  const { toggleWishlist, isWishlisted } = useWishlist();
   const { addToCart } = useCart();
+  const { toggleWishlist, isWishlisted } = useWishlist();
 
   const liked = isWishlisted(product.id);
 
+  const handleAddToCart = () => {
+    addToCart(product);
+  };
+
   return (
-    <div className="group min-w-0 overflow-hidden rounded-lg border border-stone-200 bg-white shadow-sm transition hover:shadow-md sm:rounded-xl">
+    <article className="group overflow-hidden rounded-2xl border border-stone-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg">
 
       {/* IMAGE */}
-      <div className="relative aspect-square overflow-hidden bg-stone-100">
+      <div className="relative overflow-hidden bg-stone-100">
 
         <Link to={`/product/${product.id}`}>
           <img
             src={product.image}
             alt={product.name}
+            loading="lazy"
             onError={(e) => {
               e.currentTarget.onerror = null;
               e.currentTarget.src =
-                "https://images.unsplash.com/photo-1610701596007-11502861dcfa?auto=format&fit=crop&w=600&q=80";
+                "https://images.unsplash.com/photo-1610701596007-11502861dcfa?auto=format&fit=crop&w=700&q=80";
             }}
-            className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
+            className="aspect-square w-full object-cover transition duration-500 group-hover:scale-105"
           />
         </Link>
+
+        {/* CATEGORY */}
+        <span className="absolute left-2 top-2 max-w-[70%] truncate rounded-full bg-white/95 px-2.5 py-1 text-[9px] font-bold uppercase tracking-wide text-amber-800 shadow-sm sm:left-3 sm:top-3 sm:px-3 sm:text-[10px]">
+          {product.category}
+        </span>
 
         {/* WISHLIST */}
         <button
           type="button"
           onClick={() => toggleWishlist(product)}
-          className="absolute right-2 top-2 z-10 flex h-8 w-8 items-center justify-center rounded-full bg-white shadow-md sm:h-10 sm:w-10"
+          className="absolute right-2 top-2 flex h-9 w-9 items-center justify-center rounded-full bg-white/95 shadow-sm transition hover:scale-105 sm:right-3 sm:top-3 sm:h-10 sm:w-10"
+          aria-label={
+            liked
+              ? "Remove from wishlist"
+              : "Add to wishlist"
+          }
         >
           <Heart
-            size={17}
+            size={18}
             className={
               liked
                 ? "fill-red-500 text-red-500"
-                : "text-stone-600"
+                : "text-stone-700"
             }
           />
         </button>
 
       </div>
 
-      {/* PRODUCT INFO */}
-      <div className="p-2.5 sm:p-4">
+      {/* CONTENT */}
+      <div className="p-3 sm:p-4">
 
-        <p className="mb-1 truncate text-[10px] font-semibold uppercase text-amber-700 sm:text-xs">
-          {product.category}
-        </p>
-
+        {/* NAME */}
         <Link to={`/product/${product.id}`}>
-          <h3 className="line-clamp-2 min-h-[34px] text-sm font-semibold leading-4 text-stone-800 sm:min-h-[44px] sm:text-base sm:leading-5">
+          <h2 className="line-clamp-2 min-h-[40px] text-sm font-bold leading-5 text-stone-800 transition hover:text-amber-700 sm:text-base">
             {product.name}
-          </h3>
+          </h2>
         </Link>
 
         {/* RATING */}
-        <div className="mt-2 flex items-center gap-1">
+        <div className="mt-2 flex items-center gap-2">
+
           <span className="flex items-center gap-1 rounded bg-green-600 px-1.5 py-0.5 text-[10px] font-bold text-white sm:text-xs">
             {product.rating}
             <Star
-              size={10}
+              size={11}
               fill="currentColor"
             />
           </span>
+
+          <span className="text-[10px] text-stone-400 sm:text-xs">
+            Highly Rated
+          </span>
+
         </div>
 
         {/* PRICE */}
-        <div className="mt-2">
-          <span className="text-base font-bold text-stone-900 sm:text-lg">
+        <div className="mt-2 flex items-center gap-2">
+
+          <span className="text-base font-bold text-amber-800 sm:text-lg">
             ₹{product.price}
           </span>
+
         </div>
 
-        {/* ADD TO CART */}
+        {/* ADD CART */}
         <button
           type="button"
-          onClick={() => addToCart(product)}
-          className="mt-2 flex w-full items-center justify-center gap-1.5 rounded-md bg-amber-700 px-2 py-2 text-xs font-bold text-white transition hover:bg-amber-800 active:scale-95 sm:rounded-full sm:py-2.5 sm:text-sm"
+          onClick={handleAddToCart}
+          disabled={product.stock === 0}
+          className="mt-3 flex w-full items-center justify-center gap-1.5 rounded-xl bg-amber-700 px-2 py-2.5 text-xs font-bold text-white transition hover:bg-amber-800 active:scale-[0.98] disabled:bg-stone-400 sm:gap-2 sm:text-sm"
         >
-          <ShoppingCart size={14} />
-          Add to Cart
+          <ShoppingCart size={16} />
+
+          {product.stock === 0
+            ? "Out of Stock"
+            : "Add to Cart"}
         </button>
 
       </div>
 
-    </div>
+    </article>
   );
 }
 

@@ -1,238 +1,313 @@
-import { Link, useParams } from "react-router";
 import { useState } from "react";
+import { Link, useParams } from "react-router";
 import {
   ArrowLeft,
-  ShoppingBag,
-  Star,
-  Plus,
+  Heart,
   Minus,
+  Plus,
+  ShoppingCart,
+  Star,
 } from "lucide-react";
 
 import products from "../data/products";
 import { useCart } from "../context/CartContext";
+import { useWishlist } from "../context/WishlistContext";
 
 function ProductDetails() {
   const { id } = useParams();
 
-  const product = products.find(
-    (item) => item.id === Number(id)
-  );
-
   const { addToCart } = useCart();
+  const { toggleWishlist, isWishlisted } = useWishlist();
 
   const [quantity, setQuantity] = useState(1);
+  const [added, setAdded] = useState(false);
 
-  const fallbackImage =
-    "https://images.unsplash.com/photo-1610701596007-11502861dcfa?auto=format&fit=crop&w=1000&q=80";
+  const product = products.find(
+    (item) => String(item.id) === String(id)
+  );
 
-  /* Product not found */
   if (!product) {
     return (
-      <main className="flex min-h-[75vh] items-center justify-center px-5">
-
+      <main className="flex min-h-[70vh] items-center justify-center px-5">
         <div className="text-center">
-
-          <div className="mx-auto mb-5 flex h-20 w-20 items-center justify-center rounded-full bg-amber-100 text-3xl">
-            🛍️
-          </div>
-
-          <h1 className="text-3xl font-bold text-stone-800">
+          <h1 className="text-2xl font-bold text-stone-800">
             Product Not Found
           </h1>
 
-          <p className="mt-3 text-stone-500">
-            Sorry, this product doesn't exist.
+          <p className="mt-2 text-stone-500">
+            This craft is currently unavailable.
           </p>
 
           <Link
             to="/"
-            className="mt-6 inline-flex items-center gap-2 rounded-full bg-amber-700 px-6 py-3 font-semibold text-white transition hover:bg-amber-800"
+            className="mt-6 inline-flex rounded-full bg-amber-700 px-6 py-3 font-semibold text-white"
           >
-            <ArrowLeft size={18} />
             Back to Shop
           </Link>
-
         </div>
-
       </main>
     );
   }
 
-  /* Increase quantity */
+  const liked = isWishlisted(product.id);
+
   const increaseQuantity = () => {
-    setQuantity((currentQuantity) => currentQuantity + 1);
+    if (quantity < product.stock) {
+      setQuantity((value) => value + 1);
+    }
   };
 
-  /* Decrease quantity */
   const decreaseQuantity = () => {
-    setQuantity((currentQuantity) =>
-      Math.max(1, currentQuantity - 1)
-    );
+    if (quantity > 1) {
+      setQuantity((value) => value - 1);
+    }
   };
 
-  /* Add product to cart */
   const handleAddToCart = () => {
     for (let i = 0; i < quantity; i++) {
       addToCart(product);
     }
+
+    setAdded(true);
+
+    setTimeout(() => {
+      setAdded(false);
+    }, 2000);
   };
 
   return (
-    <main className="mx-auto max-w-7xl px-5 py-8 sm:py-12">
+    <main className="mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:py-10 lg:px-8">
 
-      {/* Back Button */}
+      {/* BACK */}
       <Link
         to="/"
-        className="mb-8 inline-flex items-center gap-2 text-sm font-medium text-stone-600 transition hover:text-amber-700"
+        className="mb-6 inline-flex items-center gap-2 text-sm font-semibold text-stone-600 hover:text-amber-700"
       >
         <ArrowLeft size={18} />
         Back to Shop
       </Link>
 
-      {/* Main Product Section */}
-      <div className="grid gap-10 lg:grid-cols-2 lg:gap-16">
+      {/* PRODUCT */}
+      <div className="grid gap-8 lg:grid-cols-2 lg:gap-14">
 
-        {/* ================= IMAGE ================= */}
-        <div className="overflow-hidden rounded-3xl bg-stone-100 shadow-sm">
+        {/* IMAGE */}
+        <div className="relative">
 
-          <img
-            src={product.image}
-            alt={product.name}
-            onError={(event) => {
-              event.currentTarget.onerror = null;
-              event.currentTarget.src = fallbackImage;
-            }}
-            className="h-full max-h-[650px] min-h-[400px] w-full object-cover"
-          />
+          <div className="overflow-hidden rounded-2xl bg-stone-100 shadow-sm">
+            <img
+              src={product.image}
+              alt={product.name}
+              onError={(e) => {
+                e.currentTarget.onerror = null;
+                e.currentTarget.src =
+                  "https://images.unsplash.com/photo-1610701596007-11502861dcfa?auto=format&fit=crop&w=1000&q=80";
+              }}
+              className="aspect-square w-full object-cover"
+            />
+          </div>
+
+          {/* Wishlist */}
+          <button
+            type="button"
+            onClick={() => toggleWishlist(product)}
+            className="absolute right-4 top-4 flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-lg transition hover:scale-105"
+          >
+            <Heart
+              size={23}
+              className={
+                liked
+                  ? "fill-red-500 text-red-500"
+                  : "text-stone-700"
+              }
+            />
+          </button>
 
         </div>
 
-        {/* ================= DETAILS ================= */}
+        {/* DETAILS */}
         <div className="flex flex-col justify-center">
 
-          {/* Category */}
-          <span className="w-fit rounded-full bg-amber-100 px-4 py-2 text-sm font-semibold text-amber-800">
+          {/* CATEGORY */}
+          <p className="text-sm font-bold uppercase tracking-widest text-amber-700">
             {product.category}
-          </span>
+          </p>
 
-          {/* Name */}
-          <h1 className="mt-5 text-4xl font-bold leading-tight text-stone-800 sm:text-5xl">
+          {/* NAME */}
+          <h1 className="mt-3 text-3xl font-bold leading-tight text-stone-900 sm:text-4xl">
             {product.name}
           </h1>
 
-          {/* Rating */}
-          <div className="mt-5 flex items-center gap-2">
+          {/* RATING */}
+          <div className="mt-4 flex items-center gap-3">
 
-            <div className="flex items-center gap-1 rounded-full bg-amber-50 px-3 py-1">
-
+            <span className="flex items-center gap-1 rounded-md bg-green-600 px-2 py-1 text-sm font-bold text-white">
+              {product.rating}
               <Star
-                size={18}
+                size={14}
                 fill="currentColor"
-                className="text-amber-500"
               />
+            </span>
 
-              <span className="font-semibold text-stone-700">
-                {product.rating}
-              </span>
-
-            </div>
-
-            <span className="text-sm text-stone-400">
+            <span className="text-sm text-stone-500">
               Customer Rating
             </span>
 
           </div>
 
-          {/* Price */}
-          <p className="mt-6 text-3xl font-bold text-amber-800">
-            ₹{product.price}
-          </p>
+          {/* PRICE */}
+          <div className="mt-6 border-b border-stone-200 pb-6">
+            <span className="text-3xl font-bold text-amber-800">
+              ₹{product.price}
+            </span>
 
-          {/* Description */}
-          <div className="mt-6 border-t border-stone-200 pt-6">
+            <span className="ml-3 text-sm text-green-700">
+              Inclusive of all taxes
+            </span>
+          </div>
 
-            <h2 className="text-lg font-semibold text-stone-800">
-              Product Description
+          {/* DESCRIPTION */}
+          <div className="mt-6">
+            <h2 className="text-lg font-bold text-stone-800">
+              About this product
             </h2>
 
-            <p className="mt-3 leading-8 text-stone-600">
+            <p className="mt-2 text-sm leading-7 text-stone-600 sm:text-base">
               {product.description}
             </p>
+          </div>
+
+          {/* PRODUCT INFO */}
+          <div className="mt-6 grid grid-cols-2 gap-3">
+
+            <div className="rounded-xl bg-stone-50 p-4">
+              <p className="text-xs font-semibold text-stone-500">
+                Material
+              </p>
+
+              <p className="mt-1 font-bold text-stone-800">
+                {product.material}
+              </p>
+            </div>
+
+            <div className="rounded-xl bg-stone-50 p-4">
+              <p className="text-xs font-semibold text-stone-500">
+                Size
+              </p>
+
+              <p className="mt-1 font-bold text-stone-800">
+                {product.size}
+              </p>
+            </div>
 
           </div>
 
-          {/* Quantity */}
-          <div className="mt-8">
+          {/* STOCK */}
+          <div className="mt-5">
 
-            <p className="mb-3 text-sm font-semibold text-stone-700">
-              Quantity
-            </p>
+            {product.stock > 0 ? (
+              <p className="text-sm font-semibold text-green-700">
+                ✓ In Stock — {product.stock} available
+              </p>
+            ) : (
+              <p className="text-sm font-semibold text-red-600">
+                Out of Stock
+              </p>
+            )}
 
-            <div className="flex w-fit items-center overflow-hidden rounded-full border border-stone-300">
+          </div>
+
+          {/* QUANTITY + CART */}
+          <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+
+            {/* Quantity */}
+            <div className="flex h-12 items-center justify-between rounded-xl border border-stone-300 px-2 sm:w-36">
 
               <button
                 type="button"
                 onClick={decreaseQuantity}
-                className="p-3 text-stone-600 transition hover:bg-stone-100 hover:text-amber-700"
+                disabled={quantity <= 1}
+                className="flex h-9 w-9 items-center justify-center rounded-lg hover:bg-stone-100 disabled:opacity-40"
               >
-                <Minus size={18} />
+                <Minus size={17} />
               </button>
 
-              <span className="w-12 text-center font-semibold text-stone-800">
+              <span className="font-bold text-stone-800">
                 {quantity}
               </span>
 
               <button
                 type="button"
                 onClick={increaseQuantity}
-                className="p-3 text-stone-600 transition hover:bg-stone-100 hover:text-amber-700"
+                disabled={quantity >= product.stock}
+                className="flex h-9 w-9 items-center justify-center rounded-lg hover:bg-stone-100 disabled:opacity-40"
               >
-                <Plus size={18} />
+                <Plus size={17} />
               </button>
 
             </div>
 
-          </div>
+            {/* Add Cart */}
+            <button
+              type="button"
+              onClick={handleAddToCart}
+              disabled={product.stock === 0}
+              className="flex h-12 flex-1 items-center justify-center gap-2 rounded-xl bg-amber-700 px-6 font-bold text-white transition hover:bg-amber-800 active:scale-[0.98] disabled:cursor-not-allowed disabled:bg-stone-400"
+            >
+              <ShoppingCart size={20} />
 
-          {/* Add To Cart */}
-          <button
-            type="button"
-            onClick={handleAddToCart}
-            className="mt-8 flex w-full items-center justify-center gap-3 rounded-full bg-stone-800 px-8 py-4 font-semibold text-white shadow-lg transition hover:bg-amber-700"
-          >
-            <ShoppingBag size={21} />
-            Add to Cart
-          </button>
-
-          {/* Extra Info */}
-          <div className="mt-8 grid grid-cols-3 gap-3">
-
-            <div className="rounded-xl bg-stone-100 p-4 text-center">
-              <p className="text-lg">🎨</p>
-              <p className="mt-1 text-xs font-medium text-stone-600">
-                Handmade
-              </p>
-            </div>
-
-            <div className="rounded-xl bg-stone-100 p-4 text-center">
-              <p className="text-lg">📦</p>
-              <p className="mt-1 text-xs font-medium text-stone-600">
-                Secure Pack
-              </p>
-            </div>
-
-            <div className="rounded-xl bg-stone-100 p-4 text-center">
-              <p className="text-lg">✨</p>
-              <p className="mt-1 text-xs font-medium text-stone-600">
-                Quality
-              </p>
-            </div>
+              {added ? "Added to Cart ✓" : "Add to Cart"}
+            </button>
 
           </div>
+
+          {/* CART LINK */}
+          {added && (
+            <Link
+              to="/cart"
+              className="mt-3 text-center text-sm font-bold text-amber-700 hover:underline"
+            >
+              Go to Cart →
+            </Link>
+          )}
 
         </div>
 
       </div>
+
+      {/* FEATURES */}
+      <section className="mt-12 grid gap-4 border-t border-stone-200 pt-8 sm:grid-cols-3">
+
+        <div className="rounded-xl bg-stone-50 p-5 text-center">
+          <h3 className="font-bold text-stone-800">
+            Handmade Quality
+          </h3>
+
+          <p className="mt-1 text-sm text-stone-500">
+            Carefully crafted with attention to detail.
+          </p>
+        </div>
+
+        <div className="rounded-xl bg-stone-50 p-5 text-center">
+          <h3 className="font-bold text-stone-800">
+            Secure Shopping
+          </h3>
+
+          <p className="mt-1 text-sm text-stone-500">
+            Safe and simple checkout experience.
+          </p>
+        </div>
+
+        <div className="rounded-xl bg-stone-50 p-5 text-center">
+          <h3 className="font-bold text-stone-800">
+            Crafted with Love
+          </h3>
+
+          <p className="mt-1 text-sm text-stone-500">
+            Unique pieces made for your special spaces.
+          </p>
+        </div>
+
+      </section>
 
     </main>
   );

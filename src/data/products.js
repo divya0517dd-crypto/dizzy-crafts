@@ -1,355 +1,452 @@
 const products = [
   {
     id: 1,
-    name: "Handmade Terracotta Pot",
+    name: "Terracotta Floral Wall Hanging",
     category: "Home Decor",
     price: 499,
     rating: 4.8,
-    description:
-      "Beautiful handcrafted terracotta pot made with traditional artisan techniques.",
     image:
       "https://images.unsplash.com/photo-1610701596007-11502861dcfa?auto=format&fit=crop&w=800&q=80",
+    description:
+      "Handcrafted terracotta wall decor featuring an elegant floral design, perfect for adding a warm traditional touch to your home.",
+    material: "Terracotta",
+    size: "12 x 12 inches",
+    stock: 12,
   },
+
   {
     id: 2,
-    name: "Handmade Ceramic Vase",
+    name: "Handwoven Jute Basket",
     category: "Home Decor",
     price: 699,
     rating: 4.7,
-    description:
-      "Elegant ceramic vase designed to add a warm handmade touch to your home.",
     image:
-      "https://images.unsplash.com/photo-1578500494198-246f612d3b3b?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1594223274512-ad4803739b7c?auto=format&fit=crop&w=800&q=80",
+    description:
+      "Eco-friendly handwoven jute basket suitable for storing accessories, towels, toys and everyday essentials.",
+    material: "Natural Jute",
+    size: "10 x 8 inches",
+    stock: 18,
   },
+
   {
     id: 3,
-    name: "Macrame Wall Hanging",
-    category: "Wall Decor",
+    name: "Blue Pottery Decorative Plate",
+    category: "Pottery",
     price: 899,
     rating: 4.9,
-    description:
-      "Boho-inspired macrame wall hanging carefully crafted with soft cotton rope.",
     image:
-      "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?auto=format&fit=crop&w=800&q=80",
+    description:
+      "Beautiful handcrafted decorative pottery plate inspired by traditional Indian ceramic artistry.",
+    material: "Ceramic",
+    size: "10 inches diameter",
+    stock: 8,
   },
+
   {
     id: 4,
-    name: "Beaded Bracelet",
-    category: "Jewelry",
-    price: 299,
+    name: "Macrame Leaf Wall Decor",
+    category: "Wall Art",
+    price: 599,
     rating: 4.6,
-    description:
-      "Stylish handmade beaded bracelet suitable for everyday fashion.",
     image:
-      "https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1524638067-feba7d5c7301?auto=format&fit=crop&w=800&q=80",
+    description:
+      "Soft cotton macrame wall hanging designed with leaf patterns for modern and boho interiors.",
+    material: "Cotton Cord",
+    size: "18 x 10 inches",
+    stock: 15,
   },
+
   {
     id: 5,
-    name: "Boho Earrings",
-    category: "Jewelry",
-    price: 349,
+    name: "Handmade Clay Vase",
+    category: "Pottery",
+    price: 799,
     rating: 4.8,
-    description:
-      "Elegant handmade earrings with a beautiful bohemian-inspired design.",
     image:
-      "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1612196808214-b8e1d6145a8c?auto=format&fit=crop&w=800&q=80",
+    description:
+      "Minimal handmade clay vase with a natural finish, suitable for flowers and tabletop decoration.",
+    material: "Natural Clay",
+    size: "8 inches height",
+    stock: 10,
   },
+
   {
     id: 6,
-    name: "Handmade Candle",
-    category: "Candles",
-    price: 399,
-    rating: 4.7,
-    description:
-      "Decorative handmade candle perfect for creating a cozy atmosphere.",
-    image:
-      "https://images.unsplash.com/photo-1603006905003-be475563bc59?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    id: 7,
-    name: "Scented Soy Candle",
-    category: "Candles",
-    price: 549,
-    rating: 4.9,
-    description:
-      "A relaxing scented soy candle made for peaceful evenings and special moments.",
-    image:
-      "https://images.unsplash.com/photo-1602874801006-e26d4c9b8e8a?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    id: 8,
-    name: "Wooden Photo Frame",
-    category: "Wood Crafts",
-    price: 599,
-    rating: 4.7,
-    description:
-      "Rustic wooden photo frame that beautifully displays your favourite memories.",
-    image:
-      "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    id: 9,
-    name: "Wooden Jewellery Box",
-    category: "Wood Crafts",
-    price: 799,
-    rating: 4.8,
-    description:
-      "Handcrafted wooden jewellery box with a classic natural finish.",
+    name: "Bamboo Storage Box",
+    category: "Handmade",
+    price: 749,
+    rating: 4.5,
     image:
       "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    id: 10,
-    name: "Crochet Flower",
-    category: "Crochet",
-    price: 199,
-    rating: 4.6,
     description:
-      "Cute handmade crochet flower created with soft colourful yarn.",
-    image:
-      "https://images.unsplash.com/photo-1610701596007-11502861dcfa?auto=format&fit=crop&w=800&q=80",
+      "Lightweight bamboo storage box crafted for organizing jewelry, stationery and small household items.",
+    material: "Bamboo",
+    size: "12 x 8 x 5 inches",
+    stock: 14,
   },
+
   {
-    id: 11,
-    name: "Crochet Tote Bag",
-    category: "Crochet",
-    price: 999,
+    id: 7,
+    name: "Traditional Dhokra Elephant",
+    category: "Traditional Art",
+    price: 1199,
     rating: 4.9,
-    description:
-      "Reusable handmade crochet tote bag with a beautiful textured finish.",
-    image:
-      "https://images.unsplash.com/photo-1594223274512-ad4803739b7c?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    id: 12,
-    name: "Hand Painted Mug",
-    category: "Kitchen Crafts",
-    price: 449,
-    rating: 4.8,
-    description:
-      "Unique hand-painted mug that brings artistic charm to your coffee time.",
-    image:
-      "https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    id: 13,
-    name: "Clay Incense Holder",
-    category: "Home Decor",
-    price: 299,
-    rating: 4.5,
-    description:
-      "Traditional clay incense holder with a simple handmade design.",
-    image:
-      "https://images.unsplash.com/photo-1602523961358-f9f03dd557db?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    id: 14,
-    name: "Decorative Clay Bowl",
-    category: "Home Decor",
-    price: 499,
-    rating: 4.7,
-    description:
-      "Decorative handmade clay bowl suitable for tables and shelves.",
-    image:
-      "https://images.unsplash.com/photo-1610701596007-11502861dcfa?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    id: 15,
-    name: "Handmade Dream Catcher",
-    category: "Wall Decor",
-    price: 749,
-    rating: 4.8,
-    description:
-      "Beautiful dream catcher designed to give your room a peaceful boho look.",
-    image:
-      "https://images.unsplash.com/photo-1523731407965-2430cd12f5e4?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    id: 16,
-    name: "Resin Art Coaster Set",
-    category: "Resin Art",
-    price: 649,
-    rating: 4.9,
-    description:
-      "Set of artistic resin coasters with a glossy handcrafted finish.",
-    image:
-      "https://images.unsplash.com/photo-1603006905003-be475563bc59?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    id: 17,
-    name: "Resin Keychain",
-    category: "Resin Art",
-    price: 249,
-    rating: 4.6,
-    description:
-      "Cute handmade resin keychain perfect for bags and keys.",
-    image:
-      "https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    id: 18,
-    name: "Handmade Gift Box",
-    category: "Gifts",
-    price: 799,
-    rating: 4.8,
-    description:
-      "Beautiful handmade gift box designed for birthdays and special occasions.",
-    image:
-      "https://images.unsplash.com/photo-1513883049090-d0b7439799bf?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    id: 19,
-    name: "Miniature Plant Pot",
-    category: "Garden Crafts",
-    price: 299,
-    rating: 4.7,
-    description:
-      "Small handmade planter perfect for succulents and indoor plants.",
-    image:
-      "https://images.unsplash.com/photo-1485955900006-10f4d324d411?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    id: 20,
-    name: "Bamboo Basket",
-    category: "Bamboo Crafts",
-    price: 699,
-    rating: 4.8,
-    description:
-      "Eco-friendly handmade bamboo basket with a natural woven texture.",
-    image:
-      "https://images.unsplash.com/photo-1594223274512-ad4803739b7c?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    id: 21,
-    name: "Handwoven Table Mat",
-    category: "Home Decor",
-    price: 349,
-    rating: 4.6,
-    description:
-      "Handwoven table mat that adds natural warmth to your dining space.",
-    image:
-      "https://images.unsplash.com/photo-1604014237800-1c9102c219da?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    id: 22,
-    name: "Fabric Wall Art",
-    category: "Wall Decor",
-    price: 899,
-    rating: 4.9,
-    description:
-      "Creative handmade fabric wall art designed for modern interiors.",
     image:
       "https://images.unsplash.com/photo-1549490349-8643362247b5?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    id: 23,
-    name: "Handmade Hair Clip",
-    category: "Accessories",
-    price: 199,
-    rating: 4.5,
     description:
-      "Pretty handmade hair accessory designed for everyday styling.",
-    image:
-      "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=800&q=80",
+      "Traditional Indian-inspired elephant sculpture designed as an elegant statement piece for your home.",
+    material: "Metal",
+    size: "7 x 5 inches",
+    stock: 6,
   },
+
   {
-    id: 24,
-    name: "Beaded Necklace",
-    category: "Jewelry",
-    price: 599,
+    id: 8,
+    name: "Handpainted Wooden Tray",
+    category: "Wood Craft",
+    price: 849,
+    rating: 4.7,
+    image:
+      "https://images.unsplash.com/photo-1602874801006-e26e5e3d4f7c?auto=format&fit=crop&w=800&q=80",
+    description:
+      "Decorative wooden serving tray featuring a colorful handcrafted painted pattern.",
+    material: "Mango Wood",
+    size: "16 x 10 inches",
+    stock: 11,
+  },
+
+  {
+    id: 9,
+    name: "Beaded Boho Dreamcatcher",
+    category: "Wall Art",
+    price: 649,
+    rating: 4.6,
+    image:
+      "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=800&q=80",
+    description:
+      "Bohemian-inspired dreamcatcher decorated with natural feathers and wooden beads.",
+    material: "Cotton and Wood",
+    size: "14 inches",
+    stock: 13,
+  },
+
+  {
+    id: 10,
+    name: "Handmade Ceramic Mug",
+    category: "Pottery",
+    price: 449,
     rating: 4.8,
-    description:
-      "Elegant handmade beaded necklace with a stylish artistic finish.",
     image:
-      "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?auto=format&fit=crop&w=800&q=80",
+    description:
+      "Comfortable handmade ceramic mug with a simple artisan finish for everyday beverages.",
+    material: "Ceramic",
+    size: "350 ml",
+    stock: 20,
   },
+
   {
-    id: 25,
-    name: "Clay Pendant",
-    category: "Jewelry",
+    id: 11,
+    name: "Wooden Mandala Coaster Set",
+    category: "Wood Craft",
     price: 399,
     rating: 4.7,
-    description:
-      "Unique handcrafted clay pendant made for a simple artistic look.",
     image:
-      "https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    id: 26,
-    name: "Handmade Notebook",
-    category: "Stationery",
-    price: 299,
-    rating: 4.8,
+      "https://images.unsplash.com/photo-1610701596061-2ecf227e85b2?auto=format&fit=crop&w=800&q=80",
     description:
-      "Beautiful handmade notebook perfect for journaling and creative ideas.",
-    image:
-      "https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=800&q=80",
+      "Set of handcrafted wooden coasters decorated with detailed mandala-inspired patterns.",
+    material: "Wood",
+    size: "4 inches each",
+    stock: 25,
   },
+
   {
-    id: 27,
-    name: "Decorative Bookmark",
-    category: "Stationery",
-    price: 149,
-    rating: 4.5,
-    description:
-      "Elegant handmade bookmark for readers who love artistic details.",
-    image:
-      "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    id: 28,
-    name: "Handmade Soap Gift Set",
-    category: "Gifts",
-    price: 699,
-    rating: 4.8,
-    description:
-      "Beautifully packed handmade soap gift set for special occasions.",
-    image:
-      "https://images.unsplash.com/photo-1607006483225-6d9c8e6c7c2d?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    id: 29,
-    name: "Jute Storage Basket",
-    category: "Eco Crafts",
-    price: 749,
-    rating: 4.7,
-    description:
-      "Eco-friendly jute storage basket combining functionality and natural beauty.",
-    image:
-      "https://images.unsplash.com/photo-1594223274512-ad4803739b7c?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    id: 30,
-    name: "Handmade Wall Plate",
-    category: "Wall Decor",
-    price: 899,
-    rating: 4.9,
-    description:
-      "Decorative handmade wall plate designed to make your interiors stand out.",
-    image:
-      "https://images.unsplash.com/photo-1577083288073-40892c0860a4?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    id: 31,
-    name: "Wooden Candle Stand",
-    category: "Wood Crafts",
+    id: 12,
+    name: "Handmade Candle Holder",
+    category: "Home Decor",
     price: 549,
-    rating: 4.7,
-    description:
-      "Rustic wooden candle stand crafted with a natural handmade finish.",
+    rating: 4.5,
     image:
       "https://images.unsplash.com/photo-1603006905003-be475563bc59?auto=format&fit=crop&w=800&q=80",
+    description:
+      "Elegant handcrafted candle holder that creates a cozy atmosphere for living rooms and bedrooms.",
+    material: "Ceramic",
+    size: "5 inches height",
+    stock: 16,
   },
+
   {
-    id: 32,
-    name: "Handmade Gift Hamper",
-    category: "Gifts",
+    id: 13,
+    name: "Palm Leaf Storage Basket",
+    category: "Eco Crafts",
+    price: 599,
+    rating: 4.6,
+    image:
+      "https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&fit=crop&w=800&q=80",
+    description:
+      "Eco-friendly storage basket woven from natural palm leaves with a rustic handmade appearance.",
+    material: "Palm Leaf",
+    size: "12 x 10 inches",
+    stock: 17,
+  },
+
+  {
+    id: 14,
+    name: "Mini Wooden Elephant",
+    category: "Wood Craft",
+    price: 349,
+    rating: 4.8,
+    image:
+      "https://images.unsplash.com/photo-1544966503-7cc5ac882d5f?auto=format&fit=crop&w=800&q=80",
+    description:
+      "Small handcrafted wooden elephant sculpture ideal for shelves, desks and gift collections.",
+    material: "Sheesham Wood",
+    size: "5 inches",
+    stock: 22,
+  },
+
+  {
+    id: 15,
+    name: "Handwoven Cotton Tote Bag",
+    category: "Textile Crafts",
+    price: 699,
+    rating: 4.7,
+    image:
+      "https://images.unsplash.com/photo-1594223274512-ad4803739b7c?auto=format&fit=crop&w=800&q=80",
+    description:
+      "Reusable handwoven cotton tote bag combining practical everyday use with traditional craft styling.",
+    material: "Cotton",
+    size: "15 x 14 inches",
+    stock: 19,
+  },
+
+  {
+    id: 16,
+    name: "Embroidered Cushion Cover",
+    category: "Textile Crafts",
+    price: 549,
+    rating: 4.6,
+    image:
+      "https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?auto=format&fit=crop&w=800&q=80",
+    description:
+      "Decorative cushion cover with handcrafted embroidery and traditional-inspired patterns.",
+    material: "Cotton",
+    size: "16 x 16 inches",
+    stock: 14,
+  },
+
+  {
+    id: 17,
+    name: "Rattan Hanging Planter",
+    category: "Eco Crafts",
+    price: 749,
+    rating: 4.8,
+    image:
+      "https://images.unsplash.com/photo-1485955900006-10f4d324d411?auto=format&fit=crop&w=800&q=80",
+    description:
+      "Natural rattan hanging planter designed to bring greenery and handmade character into your space.",
+    material: "Rattan",
+    size: "8 inch pot holder",
+    stock: 9,
+  },
+
+  {
+    id: 18,
+    name: "Handpainted Terracotta Pot",
+    category: "Gardening",
+    price: 399,
+    rating: 4.7,
+    image:
+      "https://images.unsplash.com/photo-1485955900006-10f4d324d411?auto=format&fit=crop&w=800&q=80",
+    description:
+      "Handpainted terracotta planter featuring colorful artisan patterns for indoor or balcony plants.",
+    material: "Terracotta",
+    size: "7 inches",
+    stock: 24,
+  },
+
+  {
+    id: 19,
+    name: "Brass Peacock Figurine",
+    category: "Traditional Art",
     price: 1299,
     rating: 4.9,
-    description:
-      "Premium handmade gift hamper carefully prepared for memorable celebrations.",
     image:
-      "https://images.unsplash.com/photo-1513883049090-d0b7439799bf?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1582550945154-66ea8fff25e1?auto=format&fit=crop&w=800&q=80",
+    description:
+      "Elegant peacock figurine inspired by Indian decorative art, crafted as a premium home accent.",
+    material: "Brass",
+    size: "8 x 5 inches",
+    stock: 7,
+  },
+
+  {
+    id: 20,
+    name: "Handmade Soy Wax Candle",
+    category: "Candles",
+    price: 499,
+    rating: 4.8,
+    image:
+      "https://images.unsplash.com/photo-1602874801006-e26e5e3d4f7c?auto=format&fit=crop&w=800&q=80",
+    description:
+      "Hand-poured decorative soy wax candle with a soft fragrance and elegant handmade presentation.",
+    material: "Soy Wax",
+    size: "200 g",
+    stock: 21,
+  },
+
+  {
+    id: 21,
+    name: "Leather Handmade Journal",
+    category: "Stationery",
+    price: 649,
+    rating: 4.7,
+    image:
+      "https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=800&q=80",
+    description:
+      "Artisan journal with a handcrafted cover, perfect for writing, sketches and personal notes.",
+    material: "Leather and Paper",
+    size: "A5",
+    stock: 15,
+  },
+
+  {
+    id: 22,
+    name: "Handmade Paper Gift Box",
+    category: "Gift Crafts",
+    price: 299,
+    rating: 4.5,
+    image:
+      "https://images.unsplash.com/photo-1512909006721-3d6018887383?auto=format&fit=crop&w=800&q=80",
+    description:
+      "Beautiful handmade paper gift box suitable for birthdays, celebrations and special occasions.",
+    material: "Recycled Paper",
+    size: "8 x 8 x 4 inches",
+    stock: 30,
+  },
+
+  {
+    id: 23,
+    name: "Beaded Handmade Bracelet",
+    category: "Jewellery",
+    price: 349,
+    rating: 4.6,
+    image:
+      "https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=800&q=80",
+    description:
+      "Handcrafted beaded bracelet designed with a simple bohemian style for everyday wear.",
+    material: "Natural Beads",
+    size: "Adjustable",
+    stock: 28,
+  },
+
+  {
+    id: 24,
+    name: "Macrame Plant Hanger",
+    category: "Macrame",
+    price: 449,
+    rating: 4.8,
+    image:
+      "https://images.unsplash.com/photo-1523413651479-597eb2da0ad6?auto=format&fit=crop&w=800&q=80",
+    description:
+      "Hand-knotted cotton macrame hanger designed for displaying small indoor plants.",
+    material: "Cotton Rope",
+    size: "40 inches length",
+    stock: 18,
+  },
+
+  {
+    id: 25,
+    name: "Decorative Wooden Frame",
+    category: "Wood Craft",
+    price: 699,
+    rating: 4.7,
+    image:
+      "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=800&q=80",
+    description:
+      "Handcrafted wooden photo frame with a natural finish for displaying your favorite memories.",
+    material: "Wood",
+    size: "8 x 10 inches",
+    stock: 12,
+  },
+
+  {
+    id: 26,
+    name: "Handpainted Ceramic Bowl",
+    category: "Pottery",
+    price: 599,
+    rating: 4.8,
+    image:
+      "https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?auto=format&fit=crop&w=800&q=80",
+    description:
+      "Handpainted ceramic bowl featuring an artisan pattern, suitable for serving or decoration.",
+    material: "Ceramic",
+    size: "7 inches diameter",
+    stock: 16,
+  },
+
+  {
+    id: 27,
+    name: "Natural Fiber Table Mat Set",
+    category: "Eco Crafts",
+    price: 499,
+    rating: 4.6,
+    image:
+      "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=800&q=80",
+    description:
+      "Set of natural fiber table mats designed to protect surfaces while adding rustic charm.",
+    material: "Natural Fiber",
+    size: "12 inches each",
+    stock: 20,
+  },
+
+  {
+    id: 28,
+    name: "Handcrafted Mini Clay House",
+    category: "Miniature Art",
+    price: 549,
+    rating: 4.7,
+    image:
+      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80",
+    description:
+      "Detailed miniature clay house crafted as a charming decorative collectible.",
+    material: "Clay",
+    size: "6 x 5 inches",
+    stock: 10,
+  },
+
+  {
+    id: 29,
+    name: "Traditional Kolam Wall Art",
+    category: "Traditional Art",
+    price: 799,
+    rating: 4.9,
+    image:
+      "https://images.unsplash.com/photo-1577083552431-6e5fd01988a5?auto=format&fit=crop&w=800&q=80",
+    description:
+      "Decorative wall artwork inspired by traditional South Indian kolam patterns.",
+    material: "Wood and Acrylic",
+    size: "14 x 14 inches",
+    stock: 8,
+  },
+
+  {
+    id: 30,
+    name: "Handmade Gift Hamper",
+    category: "Gift Crafts",
+    price: 1499,
+    rating: 4.9,
+    image:
+      "https://images.unsplash.com/photo-1549465220-1a8f6e8a2a7e?auto=format&fit=crop&w=800&q=80",
+    description:
+      "Curated handmade gift hamper featuring a selection of artisan-inspired craft items.",
+    material: "Mixed Materials",
+    size: "Medium",
+    stock: 5,
   },
 ];
 

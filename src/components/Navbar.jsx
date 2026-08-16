@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router";
+import { Link, NavLink } from "react-router";
 import {
-  Search,
-  ShoppingBag,
   Heart,
   Menu,
+  Search,
+  ShoppingBag,
+  UserRound,
   X,
   Package,
 } from "lucide-react";
@@ -13,197 +14,244 @@ import { useCart } from "../context/CartContext";
 import { useWishlist } from "../context/WishlistContext";
 
 function Navbar() {
-  const [mobileOpen, setMobileOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const [search, setSearch] = useState("");
 
   const { cartCount } = useCart();
   const { wishlist } = useWishlist();
 
-  const navigate = useNavigate();
+  const wishlistCount = wishlist?.length || 0;
 
   const handleSearch = (e) => {
     e.preventDefault();
 
-    if (search.trim()) {
-      navigate(`/?search=${encodeURIComponent(search.trim())}`);
-    }
+    const value = search.trim();
 
-    setMobileOpen(false);
+    if (!value) return;
+
+    window.location.href = `/?search=${encodeURIComponent(value)}`;
+
+    setMenuOpen(false);
+  };
+
+  const closeMenu = () => {
+    setMenuOpen(false);
   };
 
   return (
-    <header className="sticky top-0 z-50 border-b border-stone-200 bg-white">
-      <div className="mx-auto max-w-7xl px-5">
+    <header className="sticky top-0 z-50 border-b border-stone-200 bg-white/95 shadow-sm backdrop-blur">
 
-        <div className="flex h-20 items-center justify-between gap-3">
+      {/* TOP NAV */}
+      <div className="mx-auto flex h-16 max-w-7xl items-center gap-3 px-4 sm:h-[72px] sm:px-6 lg:px-8">
 
-          {/* LOGO */}
-          <Link
-            to="/"
-            onClick={() => setMobileOpen(false)}
-            className="flex items-center gap-3"
-          >
-            <div className="flex h-11 w-11 items-center justify-center rounded-full bg-amber-700 text-xl text-white">
-              ✦
-            </div>
+        {/* MOBILE MENU */}
+        <button
+          type="button"
+          onClick={() => setMenuOpen(true)}
+          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full hover:bg-stone-100 lg:hidden"
+          aria-label="Open menu"
+        >
+          <Menu size={23} />
+        </button>
 
-            <div>
-              <h1 className="text-xl font-bold text-stone-800">
-                Dizzy
-              </h1>
+        {/* LOGO */}
+        <Link
+          to="/"
+          onClick={closeMenu}
+          className="shrink-0"
+        >
+          <div className="leading-none">
+            <h1 className="font-serif text-xl font-bold tracking-wide text-stone-900 sm:text-2xl">
+              Dizzy Crafts
+            </h1>
 
-              <p className="text-[10px] font-bold tracking-[0.3em] text-amber-700">
-                CRAFTS
-              </p>
-            </div>
-          </Link>
+            <p className="mt-1 hidden text-[9px] font-medium uppercase tracking-[0.25em] text-amber-700 sm:block">
+              Handmade with Love
+            </p>
+          </div>
+        </Link>
 
-          {/* DESKTOP SEARCH */}
-          <form
-            onSubmit={handleSearch}
-            className="hidden max-w-md flex-1 items-center rounded-full border bg-stone-50 px-4 py-2.5 lg:flex"
-          >
-            <Search size={19} className="text-stone-400" />
+        {/* DESKTOP SEARCH */}
+        <form
+          onSubmit={handleSearch}
+          className="mx-auto hidden max-w-xl flex-1 lg:flex"
+        >
+          <div className="flex w-full items-center rounded-full border border-stone-300 bg-stone-50 px-4 transition focus-within:border-amber-600 focus-within:bg-white">
+
+            <Search
+              size={19}
+              className="shrink-0 text-stone-400"
+            />
 
             <input
+              type="search"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search handmade crafts..."
-              className="ml-3 w-full bg-transparent text-sm outline-none"
+              className="w-full bg-transparent px-3 py-3 text-sm outline-none"
             />
 
-            <button
-              type="submit"
-              className="rounded-full bg-stone-800 px-4 py-1.5 text-xs font-semibold text-white"
-            >
-              Search
-            </button>
-          </form>
-
-          {/* DESKTOP NAV */}
-          <nav className="hidden md:flex">
-            <Link
-              to="/"
-              className="rounded-full px-4 py-2 font-semibold text-stone-600 hover:bg-stone-100"
-            >
-              Home
-            </Link>
-
-            <Link
-              to="/orders"
-              className="rounded-full px-4 py-2 font-semibold text-stone-600 hover:bg-stone-100"
-            >
-              Orders
-            </Link>
-          </nav>
-
-          {/* ACTION BUTTONS */}
-          <div className="flex items-center gap-1">
-
-            {/* DESKTOP / MOBILE WISHLIST ICON */}
-            <Link
-              to="/wishlist"
-              onClick={() => setMobileOpen(false)}
-              className="relative rounded-full p-2.5 text-stone-600 hover:bg-stone-100"
-            >
-              <Heart size={21} />
-
-              {wishlist.length > 0 && (
-                <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-[10px] font-bold text-white">
-                  {wishlist.length}
-                </span>
-              )}
-            </Link>
-
-            {/* CART */}
-            <Link
-              to="/cart"
-              onClick={() => setMobileOpen(false)}
-              className="relative rounded-full p-2.5 text-stone-600 hover:bg-stone-100"
-            >
-              <ShoppingBag size={21} />
-
-              {cartCount > 0 && (
-                <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-amber-700 text-[10px] font-bold text-white">
-                  {cartCount}
-                </span>
-              )}
-            </Link>
-
-            {/* MENU BUTTON */}
-            <button
-              type="button"
-              onClick={() => setMobileOpen(!mobileOpen)}
-              className="rounded-full p-2.5 text-stone-700 hover:bg-stone-100 md:hidden"
-            >
-              {mobileOpen ? <X size={23} /> : <Menu size={23} />}
-            </button>
-
           </div>
+        </form>
+
+        {/* DESKTOP LINKS */}
+        <nav className="hidden items-center gap-1 lg:flex">
+
+          <NavLink
+            to="/"
+            className="rounded-full px-3 py-2 text-sm font-semibold text-stone-700 hover:bg-stone-100"
+          >
+            Home
+          </NavLink>
+
+          <NavLink
+            to="/order-history"
+            className="rounded-full px-3 py-2 text-sm font-semibold text-stone-700 hover:bg-stone-100"
+          >
+            Orders
+          </NavLink>
+
+        </nav>
+
+        {/* ACTIONS */}
+        <div className="ml-auto flex items-center gap-1 sm:gap-2">
+
+          {/* WISHLIST */}
+          <Link
+            to="/wishlist"
+            className="relative flex h-10 w-10 items-center justify-center rounded-full hover:bg-stone-100"
+            aria-label="Wishlist"
+          >
+            <Heart size={21} />
+
+            {wishlistCount > 0 && (
+              <span className="absolute -right-0.5 -top-0.5 flex h-5 min-w-5 items-center justify-center rounded-full bg-red-500 px-1 text-[10px] font-bold text-white">
+                {wishlistCount}
+              </span>
+            )}
+          </Link>
+
+          {/* CART */}
+          <Link
+            to="/cart"
+            className="relative flex h-10 w-10 items-center justify-center rounded-full hover:bg-stone-100"
+            aria-label="Shopping cart"
+          >
+            <ShoppingBag size={21} />
+
+            {cartCount > 0 && (
+              <span className="absolute -right-0.5 -top-0.5 flex h-5 min-w-5 items-center justify-center rounded-full bg-amber-700 px-1 text-[10px] font-bold text-white">
+                {cartCount}
+              </span>
+            )}
+          </Link>
+
+          {/* USER */}
+          <button
+            type="button"
+            className="hidden h-10 w-10 items-center justify-center rounded-full hover:bg-stone-100 sm:flex"
+            aria-label="Account"
+          >
+            <UserRound size={21} />
+          </button>
+
         </div>
 
-        {/* MOBILE MENU */}
-        {mobileOpen && (
-          <div className="border-t border-stone-200 py-5 md:hidden">
+      </div>
 
-            {/* MOBILE SEARCH */}
-            <form
-              onSubmit={handleSearch}
-              className="flex rounded-xl border border-stone-200 bg-stone-50 p-2"
-            >
-              <Search
-                size={19}
-                className="ml-2 mt-2.5 text-stone-400"
-              />
+      {/* MOBILE SEARCH */}
+      <div className="border-t border-stone-100 px-4 py-2.5 lg:hidden">
 
-              <input
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                placeholder="Search crafts..."
-                className="min-w-0 flex-1 bg-transparent px-3 py-2 outline-none"
-              />
+        <form onSubmit={handleSearch}>
+          <div className="flex items-center rounded-full border border-stone-300 bg-stone-50 px-3">
+
+            <Search
+              size={17}
+              className="shrink-0 text-stone-400"
+            />
+
+            <input
+              type="search"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder="Search crafts..."
+              className="w-full bg-transparent px-2.5 py-2.5 text-sm outline-none"
+            />
+
+          </div>
+        </form>
+
+      </div>
+
+      {/* MOBILE DRAWER */}
+      {menuOpen && (
+        <>
+
+          {/* OVERLAY */}
+          <button
+            type="button"
+            onClick={closeMenu}
+            aria-label="Close menu"
+            className="fixed inset-0 top-0 z-[60] h-full w-full bg-black/40 lg:hidden"
+          />
+
+          {/* DRAWER */}
+          <aside className="fixed left-0 top-0 z-[70] flex h-full w-[82%] max-w-sm flex-col bg-white shadow-2xl lg:hidden">
+
+            {/* DRAWER HEADER */}
+            <div className="flex items-center justify-between border-b border-stone-200 p-5">
+
+              <div>
+                <h2 className="font-serif text-xl font-bold text-stone-900">
+                  Dizzy Crafts
+                </h2>
+
+                <p className="mt-1 text-xs text-amber-700">
+                  Handmade with Love
+                </p>
+              </div>
 
               <button
-                type="submit"
-                className="rounded-lg bg-stone-800 px-4 text-sm font-semibold text-white"
+                type="button"
+                onClick={closeMenu}
+                className="flex h-10 w-10 items-center justify-center rounded-full hover:bg-stone-100"
               >
-                Search
+                <X size={22} />
               </button>
-            </form>
 
-            {/* MOBILE LINKS */}
-            <div className="mt-4 space-y-2">
+            </div>
 
-              <Link
+            {/* LINKS */}
+            <nav className="flex-1 space-y-2 overflow-y-auto p-4">
+
+              <NavLink
                 to="/"
-                onClick={() => setMobileOpen(false)}
-                className="block rounded-xl px-4 py-3 font-semibold text-stone-700 hover:bg-stone-100"
+                onClick={closeMenu}
+                className="flex items-center rounded-xl px-4 py-3 font-semibold text-stone-700 hover:bg-stone-100"
               >
-                🏠 Home
-              </Link>
+                Home
+              </NavLink>
 
-              {/* ⭐ WISHLIST */}
-              <Link
+              <NavLink
                 to="/wishlist"
-                onClick={() => setMobileOpen(false)}
-                className="flex w-full items-center justify-between rounded-xl px-4 py-3 font-semibold text-stone-700 hover:bg-stone-100"
+                onClick={closeMenu}
+                className="flex items-center justify-between rounded-xl px-4 py-3 font-semibold text-stone-700 hover:bg-stone-100"
               >
                 <span className="flex items-center gap-3">
                   <Heart size={19} />
                   Wishlist
                 </span>
 
-                {wishlist.length > 0 && (
-                  <span className="rounded-full bg-red-500 px-2.5 py-1 text-xs font-bold text-white">
-                    {wishlist.length}
+                {wishlistCount > 0 && (
+                  <span className="rounded-full bg-red-100 px-2 py-1 text-xs font-bold text-red-600">
+                    {wishlistCount}
                   </span>
                 )}
-              </Link>
+              </NavLink>
 
-              {/* CART */}
-              <Link
+              <NavLink
                 to="/cart"
-                onClick={() => setMobileOpen(false)}
+                onClick={closeMenu}
                 className="flex items-center justify-between rounded-xl px-4 py-3 font-semibold text-stone-700 hover:bg-stone-100"
               >
                 <span className="flex items-center gap-3">
@@ -212,27 +260,44 @@ function Navbar() {
                 </span>
 
                 {cartCount > 0 && (
-                  <span className="rounded-full bg-amber-700 px-2.5 py-1 text-xs font-bold text-white">
+                  <span className="rounded-full bg-amber-100 px-2 py-1 text-xs font-bold text-amber-700">
                     {cartCount}
                   </span>
                 )}
-              </Link>
+              </NavLink>
 
-              {/* ORDERS */}
-              <Link
-                to="/orders"
-                onClick={() => setMobileOpen(false)}
+              <NavLink
+                to="/order-history"
+                onClick={closeMenu}
                 className="flex items-center gap-3 rounded-xl px-4 py-3 font-semibold text-stone-700 hover:bg-stone-100"
               >
                 <Package size={19} />
                 Order History
-              </Link>
+              </NavLink>
+
+            </nav>
+
+            {/* DRAWER FOOTER */}
+            <div className="border-t border-stone-200 p-5">
+
+              <div className="rounded-2xl bg-amber-50 p-4">
+                <p className="text-sm font-bold text-amber-900">
+                  Handmade with ❤️
+                </p>
+
+                <p className="mt-1 text-xs leading-5 text-amber-800">
+                  Discover unique crafts made with
+                  creativity and care.
+                </p>
+              </div>
 
             </div>
 
-          </div>
-        )}
-      </div>
+          </aside>
+
+        </>
+      )}
+
     </header>
   );
 }
