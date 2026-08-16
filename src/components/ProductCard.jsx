@@ -100,8 +100,10 @@ function ProductCard({ product }) {
 
         {/* ADD CART */}
         <button
-          type="button"
-          onClick={handleAddToCart}
+  type="button"
+  onClick={handleAddToCart}
+        
+
           disabled={product.stock === 0}
           className="mt-3 flex w-full items-center justify-center gap-1.5 rounded-xl bg-amber-700 px-2 py-2.5 text-xs font-bold text-white transition hover:bg-amber-800 active:scale-[0.98] disabled:bg-stone-400 sm:gap-2 sm:text-sm"
         >

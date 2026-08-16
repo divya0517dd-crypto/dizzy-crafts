@@ -250,21 +250,21 @@ function Navbar() {
               </NavLink>
 
               <NavLink
-                to="/cart"
-                onClick={closeMenu}
-                className="flex items-center justify-between rounded-xl px-4 py-3 font-semibold text-stone-700 hover:bg-stone-100"
-              >
-                <span className="flex items-center gap-3">
-                  <ShoppingBag size={19} />
-                  Cart
-                </span>
+  to="/cart"
+  onClick={closeMenu}
+  className="flex w-full items-center justify-between rounded-xl px-4 py-3 font-semibold text-stone-700 hover:bg-stone-100"
+>
+  <span className="flex items-center gap-3">
+    <ShoppingBag size={19} />
+    Cart
+  </span>
 
-                {cartCount > 0 && (
-                  <span className="rounded-full bg-amber-100 px-2 py-1 text-xs font-bold text-amber-700">
-                    {cartCount}
-                  </span>
-                )}
-              </NavLink>
+  {cartCount > 0 && (
+    <span className="rounded-full bg-amber-100 px-2 py-1 text-xs font-bold text-amber-700">
+      {cartCount}
+    </span>
+  )}
+</NavLink>
 
               <NavLink
                 to="/order-history"
