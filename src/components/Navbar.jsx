@@ -21,43 +21,38 @@ function Navbar() {
 
   const navigate = useNavigate();
 
-  const handleSearch = (event) => {
-    event.preventDefault();
+  const handleSearch = (e) => {
+    e.preventDefault();
 
-    const value = search.trim();
-
-    if (!value) {
-      navigate("/");
-      return;
+    if (search.trim()) {
+      navigate(`/?search=${encodeURIComponent(search.trim())}`);
     }
 
-    navigate(`/?search=${encodeURIComponent(value)}`);
     setMobileOpen(false);
   };
 
   return (
-    <header className="sticky top-0 z-50 border-b border-stone-200 bg-white/95 backdrop-blur">
-
+    <header className="sticky top-0 z-50 border-b border-stone-200 bg-white">
       <div className="mx-auto max-w-7xl px-5">
 
-        <div className="flex h-20 items-center justify-between gap-4">
+        <div className="flex h-20 items-center justify-between gap-3">
 
           {/* LOGO */}
           <Link
             to="/"
             onClick={() => setMobileOpen(false)}
-            className="flex shrink-0 items-center gap-3"
+            className="flex items-center gap-3"
           >
-            <div className="flex h-11 w-11 items-center justify-center rounded-full bg-amber-700 text-xl text-white shadow-sm">
+            <div className="flex h-11 w-11 items-center justify-center rounded-full bg-amber-700 text-xl text-white">
               ✦
             </div>
 
             <div>
-              <h1 className="text-xl font-bold leading-none text-stone-800">
+              <h1 className="text-xl font-bold text-stone-800">
                 Dizzy
               </h1>
 
-              <p className="mt-1 text-[10px] font-bold tracking-[0.3em] text-amber-700">
+              <p className="text-[10px] font-bold tracking-[0.3em] text-amber-700">
                 CRAFTS
               </p>
             </div>
@@ -66,187 +61,178 @@ function Navbar() {
           {/* DESKTOP SEARCH */}
           <form
             onSubmit={handleSearch}
-            className="hidden max-w-md flex-1 items-center rounded-full border border-stone-200 bg-stone-50 px-4 py-2.5 lg:flex"
+            className="hidden max-w-md flex-1 items-center rounded-full border bg-stone-50 px-4 py-2.5 lg:flex"
           >
-            <Search
-              size={19}
-              className="shrink-0 text-stone-400"
-            />
+            <Search size={19} className="text-stone-400" />
 
             <input
               value={search}
-              onChange={(event) => setSearch(event.target.value)}
+              onChange={(e) => setSearch(e.target.value)}
               placeholder="Search handmade crafts..."
-              className="ml-3 w-full bg-transparent text-sm outline-none placeholder:text-stone-400"
+              className="ml-3 w-full bg-transparent text-sm outline-none"
             />
 
             <button
               type="submit"
-              className="rounded-full bg-stone-800 px-4 py-1.5 text-xs font-semibold text-white transition hover:bg-amber-700"
+              className="rounded-full bg-stone-800 px-4 py-1.5 text-xs font-semibold text-white"
             >
               Search
             </button>
           </form>
 
           {/* DESKTOP NAV */}
-          <nav className="hidden items-center gap-1 md:flex">
-
+          <nav className="hidden md:flex">
             <Link
               to="/"
-              className="rounded-full px-4 py-2 text-sm font-semibold text-stone-600 hover:bg-stone-100 hover:text-amber-700"
+              className="rounded-full px-4 py-2 font-semibold text-stone-600 hover:bg-stone-100"
             >
               Home
             </Link>
 
             <Link
               to="/orders"
-              className="rounded-full px-4 py-2 text-sm font-semibold text-stone-600 hover:bg-stone-100 hover:text-amber-700"
+              className="rounded-full px-4 py-2 font-semibold text-stone-600 hover:bg-stone-100"
             >
               Orders
             </Link>
-
           </nav>
 
-          {/* ACTIONS */}
+          {/* ACTION BUTTONS */}
           <div className="flex items-center gap-1">
 
-            {/* Wishlist */}
+            {/* DESKTOP / MOBILE WISHLIST ICON */}
             <Link
               to="/wishlist"
-              className="relative rounded-full p-2.5 text-stone-600 transition hover:bg-stone-100 hover:text-amber-700"
-              aria-label="Wishlist"
+              onClick={() => setMobileOpen(false)}
+              className="relative rounded-full p-2.5 text-stone-600 hover:bg-stone-100"
             >
               <Heart size={21} />
 
               {wishlist.length > 0 && (
-                <span className="absolute -right-0.5 -top-0.5 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-[10px] font-bold text-white">
+                <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-[10px] font-bold text-white">
                   {wishlist.length}
                 </span>
               )}
             </Link>
 
-            {/* Cart */}
+            {/* CART */}
             <Link
               to="/cart"
-              className="relative rounded-full p-2.5 text-stone-600 transition hover:bg-stone-100 hover:text-amber-700"
-              aria-label="Shopping Cart"
+              onClick={() => setMobileOpen(false)}
+              className="relative rounded-full p-2.5 text-stone-600 hover:bg-stone-100"
             >
               <ShoppingBag size={21} />
 
               {cartCount > 0 && (
-                <span className="absolute -right-0.5 -top-0.5 flex h-5 w-5 items-center justify-center rounded-full bg-amber-700 text-[10px] font-bold text-white">
+                <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-amber-700 text-[10px] font-bold text-white">
                   {cartCount}
                 </span>
               )}
             </Link>
 
-            {/* Mobile Menu */}
+            {/* MENU BUTTON */}
             <button
               type="button"
-              onClick={() => setMobileOpen((value) => !value)}
+              onClick={() => setMobileOpen(!mobileOpen)}
               className="rounded-full p-2.5 text-stone-700 hover:bg-stone-100 md:hidden"
-              aria-label="Toggle menu"
             >
-              {mobileOpen ? (
-                <X size={23} />
-              ) : (
-                <Menu size={23} />
-              )}
+              {mobileOpen ? <X size={23} /> : <Menu size={23} />}
             </button>
 
           </div>
-
         </div>
 
         {/* MOBILE MENU */}
         {mobileOpen && (
           <div className="border-t border-stone-200 py-5 md:hidden">
 
-            {/* Mobile Search */}
+            {/* MOBILE SEARCH */}
             <form
               onSubmit={handleSearch}
-              className="flex items-center rounded-xl border border-stone-200 bg-stone-50 p-2"
+              className="flex rounded-xl border border-stone-200 bg-stone-50 p-2"
             >
               <Search
                 size={19}
-                className="ml-2 text-stone-400"
+                className="ml-2 mt-2.5 text-stone-400"
               />
 
               <input
                 value={search}
-                onChange={(event) => setSearch(event.target.value)}
+                onChange={(e) => setSearch(e.target.value)}
                 placeholder="Search crafts..."
-                className="min-w-0 flex-1 bg-transparent px-3 py-2 text-sm outline-none"
+                className="min-w-0 flex-1 bg-transparent px-3 py-2 outline-none"
               />
 
               <button
                 type="submit"
-                className="rounded-lg bg-stone-800 px-4 py-2 text-sm font-semibold text-white"
+                className="rounded-lg bg-stone-800 px-4 text-sm font-semibold text-white"
               >
                 Search
               </button>
             </form>
 
-            <nav className="mt-4 grid gap-2">
+            {/* MOBILE LINKS */}
+            <div className="mt-4 space-y-2">
 
               <Link
                 to="/"
                 onClick={() => setMobileOpen(false)}
-                className="rounded-xl px-4 py-3 font-semibold text-stone-700 hover:bg-stone-100"
+                className="block rounded-xl px-4 py-3 font-semibold text-stone-700 hover:bg-stone-100"
               >
-                Home
+                🏠 Home
               </Link>
 
+              {/* ⭐ WISHLIST */}
               <Link
-  to="/wishlist"
-  className="flex w-full items-center justify-between rounded-xl px-4 py-3 font-semibold text-stone-700 hover:bg-stone-100"
-  onClick={() => {
-    setMobileOpen(false);
-  }}
->
-  <span>Wishlist</span>
+                to="/wishlist"
+                onClick={() => setMobileOpen(false)}
+                className="flex w-full items-center justify-between rounded-xl px-4 py-3 font-semibold text-stone-700 hover:bg-stone-100"
+              >
+                <span className="flex items-center gap-3">
+                  <Heart size={19} />
+                  Wishlist
+                </span>
 
-  <div className="flex items-center gap-2">
-    {wishlist.length > 0 && (
-      <span className="rounded-full bg-red-500 px-2 py-1 text-xs font-bold text-white">
-        {wishlist.length}
-      </span>
-    )}
+                {wishlist.length > 0 && (
+                  <span className="rounded-full bg-red-500 px-2.5 py-1 text-xs font-bold text-white">
+                    {wishlist.length}
+                  </span>
+                )}
+              </Link>
 
-    <Heart size={18} />
-  </div>
-</Link>
-
+              {/* CART */}
               <Link
                 to="/cart"
                 onClick={() => setMobileOpen(false)}
                 className="flex items-center justify-between rounded-xl px-4 py-3 font-semibold text-stone-700 hover:bg-stone-100"
               >
-                <span>Cart</span>
+                <span className="flex items-center gap-3">
+                  <ShoppingBag size={19} />
+                  Cart
+                </span>
 
                 {cartCount > 0 && (
-                  <span className="rounded-full bg-amber-700 px-2 py-1 text-xs text-white">
+                  <span className="rounded-full bg-amber-700 px-2.5 py-1 text-xs font-bold text-white">
                     {cartCount}
                   </span>
                 )}
               </Link>
 
+              {/* ORDERS */}
               <Link
                 to="/orders"
                 onClick={() => setMobileOpen(false)}
                 className="flex items-center gap-3 rounded-xl px-4 py-3 font-semibold text-stone-700 hover:bg-stone-100"
               >
-                <Package size={18} />
+                <Package size={19} />
                 Order History
               </Link>
 
-            </nav>
+            </div>
 
           </div>
         )}
-
       </div>
-
     </header>
   );
 }
